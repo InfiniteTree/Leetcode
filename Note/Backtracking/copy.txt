@@ -1,0 +1,2 @@
+在回溯算法模板中，copy需要使用在回溯函数的ret.append(path.copy())中，因为如果不用copy给path分配新的内存空间，path作为一个全局变量，每次修改path的时候，对应的ret中已经加入的path同样会被修改。
+当然，可以使用另外一种方法就可以不用copy，那就是每次进入回溯函数时，将path作为参数传入函数，这样，ret所append的就是该函数stack中的path, 在修改path的时候，不会修改到之前那个函数的stack中的path, 因此也可行。

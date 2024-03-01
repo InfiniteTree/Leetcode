@@ -1,5 +1,19 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
+        ret = []
+        path = []
+        def backtracking(startIdx):
+            ret.append(path.copy())
+            if startIdx > len(nums):
+                return
+            for i in range(startIdx, len(nums)):
+                path.append(nums[i])
+                backtracking(i+1)
+                path.pop()
+        backtracking(0)
+        return ret        
+
+        '''
         ans = []
         path = []
         n = len(nums)
@@ -16,4 +30,5 @@ class Solution:
         if n > 0:
             dfs(0)
         return ans
+        '''
         
