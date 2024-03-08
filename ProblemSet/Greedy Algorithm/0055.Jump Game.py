@@ -1,5 +1,6 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
+        # 2024.02.26
         n = len(nums)
         hold = nums[0]
         for i in range(1, n):
@@ -13,5 +14,14 @@ class Solution:
                     hold -= 1
                     continue
             
+        return True
+    
+
+        # 2024.03.08
+        dis = 0
+        for i in range(len(nums)):
+            dis = max(dis-1, nums[i])
+            if dis == 0 and i!= len(nums)-1:
+                return False
         return True
         

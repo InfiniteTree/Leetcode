@@ -17,3 +17,10 @@ class Solution:
             dp[0] = max(dp[0], dp[1]+prices[i])
             dp[1] = max(dp[1], dp[0]-prices[i])
         return dp[0]
+        '''
+        # Method 3. Greedy
+        res = 0
+        for i in range(1, len(prices)):
+            res += max(prices[i]-prices[i-1], 0)
+        return res
+        '''
