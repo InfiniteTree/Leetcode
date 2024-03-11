@@ -5,17 +5,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def getHeight(self, node):
+        # Base case
+        if node is None:
+            return 0
+        # Recursion
+        l_height = self.getHeight(node.left)
+        if l_height == -1:
+            return -1
+        r_height = self.getHeight(node.right)
+        if r_height == -1:
+            return -1
+        if abs(r_height-l_height) > 1:
+            return -1
+        return max(l_height, r_height) + 1
+    
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        def getHeight(node):
-            # Base case
-            if node is None:
-                return 0
-            # Recursion
-            l_height = getHeight(node.left)
-            if l_height == -1:
-                return -1
-            r_height = getHeight(node.right)
-            if r_height == -1 or abs(r_height-l_height) > 1:
-                return -1
-            return max(l_height, r_height) + 1
-        return getHeight(root) != -1
+        return self.getHeight(root) != -1
