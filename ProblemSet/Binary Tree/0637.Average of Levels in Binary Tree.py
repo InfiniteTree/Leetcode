@@ -5,19 +5,19 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        if not root:
-            return []
+    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
         res = []
         q = deque([root])
         while q:
+            path = []
             length = len(q)
-            for i in range(length):
+            for _ in range(length):
                 cur = q.popleft()
-                if i == length - 1:
-                    res.append(cur.val)
+                path.append(cur.val)
                 if cur.left:
                     q.append(cur.left)
                 if cur.right:
                     q.append(cur.right)
+            avg = sum(path) / length
+            res.append(avg)
         return res
