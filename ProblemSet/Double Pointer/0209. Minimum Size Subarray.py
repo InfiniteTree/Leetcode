@@ -1,14 +1,12 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        n = len(nums)
-        s = 0
-        count = n+1
-        left = 0
-        for right, x in enumerate(nums): # x == nums[right]
-            s += x
-            # Loop until when S>=target
-            while s >= target:
-                count = min(count, right-left+1) # update the subarrary
-                s -= nums[left]
-                left += 1
-        return count if count <= n else 0
+        l, r, tot = 0, 0, 0
+        minLen = inf
+        while r < len(nums):
+            tot += nums[r]
+            while tot >= target:
+                minLen = min(minLen, r-l+1)
+                tot -= nums[l]
+                l += 1
+            r += 1
+        return minLen if minLen != inf else 0
